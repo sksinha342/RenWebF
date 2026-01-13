@@ -1,0 +1,12 @@
+<script>
+const user = JSON.parse(localStorage.getItem("user"));
+if (!user) location.href = "login.html";
+
+document.write(`
+<h2>Hello ${user.username}</h2>
+<img src="${user.image}" width="120">
+<br><br>
+<a href="#">📄 PDF Password</a><br>
+<a href="#">🔳 QR Generator</a>
+`);
+</script>
