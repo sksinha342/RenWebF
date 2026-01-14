@@ -1,18 +1,15 @@
-const API = "https://sksinha342.onrender.com";
+const API_BASE_URL = "https://sksinha342.onrender.com"; // Apna Render URL yahan dalein
 
-document.getElementById("loginForm")?.addEventListener("submit", async e => {
-  e.preventDefault();
-
-  const msg = document.getElementById("msg");
-  msg.innerText = "Server waking up...";
-
-  const form = new FormData(e.target);
-  const res = await fetch(API + "/api/login", {
-    method: "POST",
-    body: form
-  });
-
-  const data = await res.json();
-  localStorage.setItem("user", JSON.stringify(data));
-  location.href = "dash.html";
-});
+async function loginUser(email, password) {
+    try {
+        const response = await fetch(`${API_BASE_URL}/auth/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
+        });
+        const data = await response.json();
+        console.log(data);
+    } catch (error) {
+        console.error("API Error:", error);
+    }
+}
